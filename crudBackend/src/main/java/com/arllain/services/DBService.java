@@ -43,6 +43,6 @@ public class DBService {
 		estado2.getCidades().addAll(Arrays.asList(cid3, cid4));
 
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
-		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4));
 	}
 }
