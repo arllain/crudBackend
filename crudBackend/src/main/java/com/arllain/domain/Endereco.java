@@ -130,6 +130,8 @@ public class Endereco implements Serializable{
 	/**
 	 * @return the cliente
 	 */
+	
+	@JsonIgnore
 	public Pessoa getCliente() {
 		return pessoa;
 	}
@@ -137,6 +139,7 @@ public class Endereco implements Serializable{
 	/**
 	 * @param pessoa the cliente to set
 	 */
+	@JsonIgnore
 	public void setCliente(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}

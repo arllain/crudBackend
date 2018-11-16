@@ -48,7 +48,7 @@ public class DBService {
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4));
 		
 		Pessoa pessoa1 = new Pessoa(null, "Maria Silva", "25156551653");
-		pessoa1.getTelefones().addAll(Arrays.asList("32259885", ""));
+		pessoa1.getTelefones().addAll(Arrays.asList("32259885"));
 
 		Pessoa pessoa2 = new Pessoa(null, "Daniel Candido", "25156551653");
 		pessoa2.getTelefones().addAll(Arrays.asList("27363323", "93838396"));
