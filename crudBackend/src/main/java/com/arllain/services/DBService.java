@@ -53,7 +53,7 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4));
 		
-		Pessoa pessoa1 = new Pessoa(null, "Maria Silva", "25156551653");
+		Pessoa pessoa1 = new Pessoa(null, "Terezinha de Melo", "25156551653");
 		Telefone tel1 = new Telefone(null, TipoTelefone.FIXO, "32259885", pessoa1);
 		pessoa1.getTelefones().addAll(Arrays.asList(tel1));
 
