@@ -28,9 +28,9 @@ public class Pessoa implements Serializable{
 	@OneToMany(mappedBy="pessoa", cascade= CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@ElementCollection
-	@CollectionTable(name="TELEFONE")
-	private Set<String> telefones = new HashSet<>();
+	@OneToMany(mappedBy="pessoa", cascade= CascadeType.ALL)
+	private List<Telefone> telefones = new ArrayList<>();
+	
 	
 	public Pessoa() {
 	}
@@ -107,14 +107,14 @@ public class Pessoa implements Serializable{
 	/**
 	 * @return the telefones
 	 */
-	public Set<String> getTelefones() {
+	public List<Telefone> getTelefones() {
 		return telefones;
 	}
 
 	/**
 	 * @param telefones the telefones to set
 	 */
-	public void setTelefones(Set<String> telefones) {
+	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}	
 	

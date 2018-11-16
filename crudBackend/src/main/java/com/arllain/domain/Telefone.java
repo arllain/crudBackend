@@ -1,39 +1,36 @@
 package com.arllain.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import com.arllain.domain.enums.TipoLogradouro;
+import com.arllain.domain.enums.TipoTelefone;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Endereco implements Serializable{
+public class Telefone implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Integer tipoLogradouro;
-	private String logradouro;
+	private Integer tipoTelefone;
 	private String numero;
-	private String bairro;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
 
-	@ManyToOne
-	@JoinColumn(name="cidade_id")
-	private Cidade cidade;
-	
 	@SuppressWarnings("unused")
-	private Endereco() {
+	private Telefone() {
 	}
 
 	/**
@@ -45,16 +42,12 @@ public class Endereco implements Serializable{
 	 * @param pessoa
 	 * @param cidade
 	 */
-	public Endereco(Integer id, TipoLogradouro tipoLogradouro, String logradouro, String numero, String bairro, 
-			Pessoa pessoa, Cidade cidade) {
+	public Telefone(Integer id, TipoTelefone tipoTelefone, String numero, Pessoa pessoa) {
 		super();
 		this.id = id;
-		this.tipoLogradouro = (tipoLogradouro == null) ? TipoLogradouro.RUA.getCod() : tipoLogradouro.getCod();
-		this.logradouro = logradouro;
+		this.tipoTelefone = (tipoTelefone == null) ? TipoTelefone.CELULAR.getCod() : tipoTelefone.getCod();
 		this.numero = numero;
-		this.bairro = bairro;
 		this.pessoa = pessoa;
-		this.cidade = cidade;
 	}
 
 	/**
@@ -72,31 +65,17 @@ public class Endereco implements Serializable{
 	}
 	
 	/**
-	 * @return the tipoLogradouro
+	 * @return the tipoTelefone
 	 */
-	public TipoLogradouro getTipoLogradouro() {
-		return TipoLogradouro.toEnum(tipoLogradouro);
+	public TipoTelefone getTipoTelefone() {
+		return TipoTelefone.toEnum(tipoTelefone);
 	}
 
 	/**
-	 * @param tipo the tipoLogradouro to set
+	 * @param tipo the tipoTelefone to set
 	 */
-	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-		this.tipoLogradouro = tipoLogradouro.getCod();
-	}
-
-	/**
-	 * @return the logradouro
-	 */
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	/**
-	 * @param logradouro the logradouro to set
-	 */
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
+	public void setTipoTelefone(TipoTelefone tipoTelefone) {
+		this.tipoTelefone = tipoTelefone.getCod();
 	}
 
 	/**
@@ -114,20 +93,6 @@ public class Endereco implements Serializable{
 	}
 
 	/**
-	 * @return the bairro
-	 */
-	public String getBairro() {
-		return bairro;
-	}
-
-	/**
-	 * @param bairro the bairro to set
-	 */
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	/**
 	 * @return the cliente
 	 */
 	
@@ -142,20 +107,6 @@ public class Endereco implements Serializable{
 	@JsonIgnore
 	public void setCliente(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	/**
-	 * @return the cidade
-	 */
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	/**
-	 * @param cidade the cidade to set
-	 */
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
 	}
 
 	/* (non-Javadoc)
@@ -180,7 +131,7 @@ public class Endereco implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Endereco other = (Endereco) obj;
+		Telefone other = (Telefone) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
