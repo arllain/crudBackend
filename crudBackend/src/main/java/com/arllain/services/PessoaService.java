@@ -82,13 +82,13 @@ public class PessoaService {
 		Telefone tel1 = new Telefone(null, TipoTelefone.toEnum(null), pessoaNewDTO.getTelefone1(), pessoa);
 		pessoa.getTelefones().add(tel1);
 		
-		if (pessoaNewDTO.getTelefone2() != null) {
-			Telefone tel2 = new Telefone(null, TipoTelefone.toEnum(null), pessoaNewDTO.getTelefone1(), pessoa);
+		if (pessoaNewDTO.getTelefone2() != null && !"".equals(pessoaNewDTO.getTelefone2().trim())) {
+			Telefone tel2 = new Telefone(null, TipoTelefone.toEnum(null), pessoaNewDTO.getTelefone2(), pessoa);
 			pessoa.getTelefones().add(tel2);
 		}
 
-		if (pessoaNewDTO.getTelefone3() != null) {
-			Telefone tel3 = new Telefone(null, TipoTelefone.toEnum(null), pessoaNewDTO.getTelefone1(), pessoa);
+		if (pessoaNewDTO.getTelefone3() != null  && !"".equals(pessoaNewDTO.getTelefone3().trim())) {
+			Telefone tel3 = new Telefone(null, TipoTelefone.toEnum(null), pessoaNewDTO.getTelefone3(), pessoa);
 			pessoa.getTelefones().add(tel3);
 		}
 		
