@@ -16,6 +16,7 @@ import com.arllain.domain.Pessoa;
 import com.arllain.domain.Telefone;
 import com.arllain.domain.enums.TipoLogradouro;
 import com.arllain.domain.enums.TipoTelefone;
+import com.arllain.dto.PessoaDTO;
 import com.arllain.dto.PessoaNewDTO;
 import com.arllain.repositories.CidadeRepository;
 import com.arllain.repositories.EnderecoRepository;
@@ -46,6 +47,7 @@ public class PessoaService {
 	public Pessoa update(Pessoa pessoa) {
 		Pessoa p = find(pessoa.getId());
 		p.setNome(pessoa.getNome());
+		p.setCpf(pessoa.getCpf());
 		return pessoaRepo.save(p);
 	}
 
@@ -94,5 +96,12 @@ public class PessoaService {
 		
 		return pessoa;
 	}
+	
+	public Pessoa fromDTO(PessoaDTO pessoaDTO) {
+		Pessoa pessoa = new Pessoa(pessoaDTO.getId(), pessoaDTO.getNome(), pessoaDTO.getCpf());
+		return pessoa;
+	}
+
+	
 
 }

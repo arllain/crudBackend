@@ -41,14 +41,31 @@ public class PessoaController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody PessoaNewDTO pessoaNewDTO) {
 		Pessoa pessoa = service.fromDTO(pessoaNewDTO);
 		pessoa = service.insert(pessoa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-	}	
+	}
+	
+	@RequestMapping(value="/save", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody PessoaDTO pessoaDTO) {
+		Pessoa pessoa = service.fromDTO(pessoaDTO);
+		pessoa = service.update(pessoa);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(pessoa.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	public ResponseEntity<Void> update(@Valid @RequestBody PessoaDTO pessoaDTO, @PathVariable Integer id) {
+		Pessoa pessoa = service.fromDTO(pessoaDTO);
+		pessoa.setId(id);
+		pessoa = service.update(pessoa);
+		return ResponseEntity.noContent().build();
+	}
+	
 
 	
 }
